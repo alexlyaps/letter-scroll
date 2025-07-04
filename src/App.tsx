@@ -19,15 +19,17 @@ function App() {
 
     const clearWord = (e: MouseEvent) => {
       e.preventDefault();
-      setWord("");
+      setWord((prev) => {
+        return prev.length > 1 ? prev.slice(0, -1) : "";
+      });
     };
 
     document.addEventListener("click", confirmLetter);
-    document.addEventListener("dblclick", clearWord);
+    document.addEventListener("contextmenu", clearWord, { capture: true });
 
     return () => {
       document.removeEventListener("click", confirmLetter);
-      document.removeEventListener("dblclick", clearWord);
+      document.removeEventListener("contextmenu", clearWord, { capture: true });
     };
   }, []);
 

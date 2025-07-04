@@ -12,7 +12,7 @@ function Letter({ onChange }: LetterProps) {
     const handleWheel = (event: WheelEvent) => {
       setLetterIndex((prev) => {
         const next =
-          (prev + (event.deltaY > 0 ? 1 : -1) + letters.length) %
+          (prev + (event.deltaY < 1 ? 1 : -1) + letters.length) %
           letters.length;
         return next;
       });
